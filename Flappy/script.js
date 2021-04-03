@@ -36,6 +36,8 @@ const setup = () => {
     flyHeight = (canvas.height / 2) - (size[1] / 2);
 
     pipes = Array(3).fill().map((a, i) => [canvas.width + (i * (pipeGap + pipeWidth)), pipeLoc()]); // canvas.width + (i * (pipeGap + pipeWidth)) = X        pipeLoc for Y
+
+    console.log(pipes);
 }
 
 
@@ -152,9 +154,9 @@ const render = () => {
 
             // Collision detection with bird
             if([
-                pipe[0] <= cTenth + size[0],                                       // Bird is touching pipe
-                pipe[0] + pipeWidth >= cTenth,                                     // Bird is on Y axis
-                pipe[1] > flyHeight || pipe[1] + pipeGap < flyHeight + size[1]     // Check that bird is not in the gap between top pipe and bottom pipe
+                pipe[0] <= cTenth + size[0],                                       // Bird is potentialy touching pipe since the Bird is always at CTenth ! 
+                pipe[0] + pipeWidth >= cTenth,                                     // Pipe is not behind the bird 
+                pipe[1] > flyHeight || pipe[1] + pipeGap < flyHeight + size[1]     // Check that bird is not in the gap between top pipe and bottom pipe 
             ].every(elem => elem)){
                 gamePlaying = false;
                 setup();
